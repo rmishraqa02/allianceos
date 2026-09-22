@@ -1,0 +1,305 @@
+// AllianceOS Prisma Contract Schema
+
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  users     User[]
+  partners  Partner[]
+  customers Customer[]
+  deals     Deal[]
+
+  approvalRequests ApprovalRequest[]
+  auditLogs        AuditLog[]
+
+  partnerTypes    PartnerType[]
+  partnerTiers    PartnerTier[]
+  partnerStatuses PartnerStatus[]
+  industries      Industry[]
+  regions         Region[]
+  capabilities    Capability[]
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String
+  password String?
+  role     String   @default("USER")
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Partner {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  website     String?
+  status      String  @default("ACTIVE")
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  partnerTypeId String?
+  partnerType   PartnerType? @relation(fields: [partnerTypeId], references: [id])
+
+  tierId String?
+  tier   PartnerTier? @relation(fields: [tierId], references: [id])
+
+  statusId     String?
+  statusConfig PartnerStatus? @relation(fields: [statusId], references: [id])
+
+  industryId String?
+  industry   Industry? @relation(fields: [industryId], references: [id])
+
+  regionId String?
+  region   Region? @relation(fields: [regionId], references: [id])
+
+  capabilities PartnerCapability[]
+
+  deals Deal[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@index([tenantId])
+  @@index([partnerTypeId])
+  @@index([tierId])
+  @@index([statusId])
+  @@index([industryId])
+  @@index([regionId])
+}
+
+model Customer {
+  id          String  @id @default(uuid())
+  name        String
+  company     String?
+  email       String?
+  description String?
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  deals Deal[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Deal {
+  id String @id @default(uuid())
+
+  name        String
+  description String?
+
+  stage  String @default("DISCOVERY")
+  status String @default("DRAFT")
+
+  value    Float?
+  currency String @default("USD")
+  product  String?
+
+  partnerRole       String?
+  expectedCloseDate TimestamptzString?
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  partnerId String?
+  partner   Partner? @relation(fields: [partnerId], references: [id])
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@index([tenantId])
+  @@index([partnerId])
+  @@index([customerId])
+  @@index([status])
+  @@index([stage])
+}
+
+model ApprovalRequest {
+  id String @id @default(uuid())
+
+  entityType String
+  entityId   String
+
+  status String @default("PENDING")
+
+  requestedBy String?
+  reviewedBy  String?
+
+  requestedAt TimestamptzString @default(now())
+  reviewedAt  TimestamptzString?
+
+  comments String?
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([entityType, entityId])
+  @@index([status])
+}
+
+model PartnerType {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  partners Partner[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+}
+
+model PartnerTier {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  partners Partner[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+}
+
+model PartnerStatus {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  partners Partner[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+}
+
+model Industry {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  partners Partner[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+}
+
+model Region {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  partners Partner[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+}
+
+model Capability {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  partners PartnerCapability[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+}
+
+model PartnerCapability {
+  partnerId    String
+  capabilityId String
+
+  partner    Partner    @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  capability Capability @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+
+  @@id([partnerId, capabilityId])
+  @@index([capabilityId])
+}
+
+model AuditLog {
+  id String @id @default(uuid())
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  actorId   String?
+  actorType String
+
+  action     String
+  entityType String
+  entityId   String
+
+  previousValue String?
+  newValue      String?
+
+  metadata String?
+
+  createdAt TimestamptzString @default(now())
+
+  @@index([tenantId])
+  @@index([entityType, entityId])
+  @@index([actorId])
+  @@index([action])
+  @@index([createdAt])
+}

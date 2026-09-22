@@ -1,0 +1,80 @@
+
+
+
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  users     User[]
+  partners  Partner[]
+  customers Customer[]
+  deals     Deal[]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  role      String   @default("USER")
+
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Partner {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  website     String?
+  status      String   @default("ACTIVE")
+
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  deals       Deal[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Customer {
+  id          String   @id @default(uuid())
+  name        String
+  company     String?
+  email       String?
+  description String?
+
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  deals       Deal[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Deal {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  stage       String   @default("DISCOVERY")
+  value       Float?
+
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  partnerId   String?
+  partner     Partner? @relation(fields: [partnerId], references: [id])
+
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id])
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}

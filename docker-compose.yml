@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: allianceos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: allianceos
+      POSTGRES_PASSWORD: allianceos_dev
+      POSTGRES_DB: allianceos
+    ports:
+      - "5432:5432"
+    volumes:
+      - allianceos_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  allianceos_postgres_data:
+
+
+

@@ -1,0 +1,2 @@
+DATABASE_URL="postgresql://allianceos:allianceos_dev@localhost:5432/allianceos?schema=public"
+JWT_SECRET="allianceos-dev-secret-change-this"DATABASE_URL="postgresql://allianceos:allianceos_dev@localhost:5432/allianceos?schema=public"

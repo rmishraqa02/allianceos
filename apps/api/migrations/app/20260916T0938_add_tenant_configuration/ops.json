@@ -1,0 +1,974 @@
+[
+  {
+    "id": "table.capability",
+    "label": "Create table \"capability\"",
+    "summary": "Creates table \"capability\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "capability"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"capability\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"capability\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"capability\"",
+        "sql": "CREATE TABLE \"public\".\"capability\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"sortOrder\" int4 DEFAULT 0 NOT NULL,\n  \"tenantId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"capability\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"capability\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.industry",
+    "label": "Create table \"industry\"",
+    "summary": "Creates table \"industry\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "industry"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"industry\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"industry\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"industry\"",
+        "sql": "CREATE TABLE \"public\".\"industry\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"sortOrder\" int4 DEFAULT 0 NOT NULL,\n  \"tenantId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"industry\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"industry\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.partnerStatus",
+    "label": "Create table \"partnerStatus\"",
+    "summary": "Creates table \"partnerStatus\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "partnerStatus"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"partnerStatus\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerStatus\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"partnerStatus\"",
+        "sql": "CREATE TABLE \"public\".\"partnerStatus\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"sortOrder\" int4 DEFAULT 0 NOT NULL,\n  \"tenantId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"partnerStatus\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerStatus\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.partnerTier",
+    "label": "Create table \"partnerTier\"",
+    "summary": "Creates table \"partnerTier\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "partnerTier"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"partnerTier\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerTier\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"partnerTier\"",
+        "sql": "CREATE TABLE \"public\".\"partnerTier\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"sortOrder\" int4 DEFAULT 0 NOT NULL,\n  \"tenantId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"partnerTier\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerTier\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.partnerType",
+    "label": "Create table \"partnerType\"",
+    "summary": "Creates table \"partnerType\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "partnerType"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"partnerType\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerType\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"partnerType\"",
+        "sql": "CREATE TABLE \"public\".\"partnerType\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"sortOrder\" int4 DEFAULT 0 NOT NULL,\n  \"tenantId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"partnerType\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerType\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.region",
+    "label": "Create table \"region\"",
+    "summary": "Creates table \"region\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "region"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"region\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"region\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"region\"",
+        "sql": "CREATE TABLE \"public\".\"region\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"sortOrder\" int4 DEFAULT 0 NOT NULL,\n  \"tenantId\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"region\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"region\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.capability.capability_tenantId_name_key",
+    "label": "Add unique constraint on \"capability\" (tenantId, name)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "capability_tenantId_name_key",
+        "table": "capability"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"capability_tenantId_name_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "capability_tenantId_name_key",
+          "public",
+          "\"public\".\"capability\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"capability_tenantId_name_key\"",
+        "sql": "ALTER TABLE \"public\".\"capability\" ADD CONSTRAINT \"capability_tenantId_name_key\" UNIQUE (\"tenantId\", \"name\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"capability_tenantId_name_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "capability_tenantId_name_key",
+          "public",
+          "\"public\".\"capability\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.industry.industry_tenantId_name_key",
+    "label": "Add unique constraint on \"industry\" (tenantId, name)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "industry_tenantId_name_key",
+        "table": "industry"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"industry_tenantId_name_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "industry_tenantId_name_key",
+          "public",
+          "\"public\".\"industry\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"industry_tenantId_name_key\"",
+        "sql": "ALTER TABLE \"public\".\"industry\" ADD CONSTRAINT \"industry_tenantId_name_key\" UNIQUE (\"tenantId\", \"name\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"industry_tenantId_name_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "industry_tenantId_name_key",
+          "public",
+          "\"public\".\"industry\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.partnerStatus.partnerStatus_tenantId_name_key",
+    "label": "Add unique constraint on \"partnerStatus\" (tenantId, name)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "partnerStatus_tenantId_name_key",
+        "table": "partnerStatus"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"partnerStatus_tenantId_name_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerStatus_tenantId_name_key",
+          "public",
+          "\"public\".\"partnerStatus\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"partnerStatus_tenantId_name_key\"",
+        "sql": "ALTER TABLE \"public\".\"partnerStatus\" ADD CONSTRAINT \"partnerStatus_tenantId_name_key\" UNIQUE (\"tenantId\", \"name\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"partnerStatus_tenantId_name_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerStatus_tenantId_name_key",
+          "public",
+          "\"public\".\"partnerStatus\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.partnerTier.partnerTier_tenantId_name_key",
+    "label": "Add unique constraint on \"partnerTier\" (tenantId, name)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "partnerTier_tenantId_name_key",
+        "table": "partnerTier"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"partnerTier_tenantId_name_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerTier_tenantId_name_key",
+          "public",
+          "\"public\".\"partnerTier\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"partnerTier_tenantId_name_key\"",
+        "sql": "ALTER TABLE \"public\".\"partnerTier\" ADD CONSTRAINT \"partnerTier_tenantId_name_key\" UNIQUE (\"tenantId\", \"name\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"partnerTier_tenantId_name_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerTier_tenantId_name_key",
+          "public",
+          "\"public\".\"partnerTier\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.partnerType.partnerType_tenantId_name_key",
+    "label": "Add unique constraint on \"partnerType\" (tenantId, name)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "partnerType_tenantId_name_key",
+        "table": "partnerType"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"partnerType_tenantId_name_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerType_tenantId_name_key",
+          "public",
+          "\"public\".\"partnerType\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"partnerType_tenantId_name_key\"",
+        "sql": "ALTER TABLE \"public\".\"partnerType\" ADD CONSTRAINT \"partnerType_tenantId_name_key\" UNIQUE (\"tenantId\", \"name\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"partnerType_tenantId_name_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerType_tenantId_name_key",
+          "public",
+          "\"public\".\"partnerType\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.region.region_tenantId_name_key",
+    "label": "Add unique constraint on \"region\" (tenantId, name)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "region_tenantId_name_key",
+        "table": "region"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"region_tenantId_name_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "region_tenantId_name_key",
+          "public",
+          "\"public\".\"region\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"region_tenantId_name_key\"",
+        "sql": "ALTER TABLE \"public\".\"region\" ADD CONSTRAINT \"region_tenantId_name_key\" UNIQUE (\"tenantId\", \"name\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"region_tenantId_name_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "region_tenantId_name_key",
+          "public",
+          "\"public\".\"region\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.capability.capability_tenantId_idx_c93ed4f1",
+    "label": "Create index \"capability_tenantId_idx_c93ed4f1\" on \"capability\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "capability_tenantId_idx_c93ed4f1",
+        "table": "capability"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"capability_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"capability_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"capability_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"capability_tenantId_idx_c93ed4f1\" ON \"public\".\"capability\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"capability_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"capability_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.industry.industry_tenantId_idx_c93ed4f1",
+    "label": "Create index \"industry_tenantId_idx_c93ed4f1\" on \"industry\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "industry_tenantId_idx_c93ed4f1",
+        "table": "industry"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"industry_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"industry_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"industry_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"industry_tenantId_idx_c93ed4f1\" ON \"public\".\"industry\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"industry_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"industry_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.partnerStatus.partnerStatus_tenantId_idx_c93ed4f1",
+    "label": "Create index \"partnerStatus_tenantId_idx_c93ed4f1\" on \"partnerStatus\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "partnerStatus_tenantId_idx_c93ed4f1",
+        "table": "partnerStatus"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"partnerStatus_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerStatus_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"partnerStatus_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"partnerStatus_tenantId_idx_c93ed4f1\" ON \"public\".\"partnerStatus\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"partnerStatus_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerStatus_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.partnerTier.partnerTier_tenantId_idx_c93ed4f1",
+    "label": "Create index \"partnerTier_tenantId_idx_c93ed4f1\" on \"partnerTier\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "partnerTier_tenantId_idx_c93ed4f1",
+        "table": "partnerTier"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"partnerTier_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerTier_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"partnerTier_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"partnerTier_tenantId_idx_c93ed4f1\" ON \"public\".\"partnerTier\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"partnerTier_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerTier_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.partnerType.partnerType_tenantId_idx_c93ed4f1",
+    "label": "Create index \"partnerType_tenantId_idx_c93ed4f1\" on \"partnerType\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "partnerType_tenantId_idx_c93ed4f1",
+        "table": "partnerType"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"partnerType_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerType_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"partnerType_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"partnerType_tenantId_idx_c93ed4f1\" ON \"public\".\"partnerType\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"partnerType_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"partnerType_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.region.region_tenantId_idx_c93ed4f1",
+    "label": "Create index \"region_tenantId_idx_c93ed4f1\" on \"region\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "region_tenantId_idx_c93ed4f1",
+        "table": "region"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"region_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"region_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"region_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"region_tenantId_idx_c93ed4f1\" ON \"public\".\"region\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"region_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"region_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.capability.capability_tenantId_fkey",
+    "label": "Add foreign key \"capability_tenantId_fkey\" on \"capability\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "capability_tenantId_fkey",
+        "table": "capability"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"capability_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "capability_tenantId_fkey",
+          "public",
+          "\"public\".\"capability\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"capability_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"capability\"\nADD CONSTRAINT \"capability_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"capability_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "capability_tenantId_fkey",
+          "public",
+          "\"public\".\"capability\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.industry.industry_tenantId_fkey",
+    "label": "Add foreign key \"industry_tenantId_fkey\" on \"industry\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "industry_tenantId_fkey",
+        "table": "industry"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"industry_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "industry_tenantId_fkey",
+          "public",
+          "\"public\".\"industry\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"industry_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"industry\"\nADD CONSTRAINT \"industry_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"industry_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "industry_tenantId_fkey",
+          "public",
+          "\"public\".\"industry\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.partnerStatus.partnerStatus_tenantId_fkey",
+    "label": "Add foreign key \"partnerStatus_tenantId_fkey\" on \"partnerStatus\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "partnerStatus_tenantId_fkey",
+        "table": "partnerStatus"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"partnerStatus_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerStatus_tenantId_fkey",
+          "public",
+          "\"public\".\"partnerStatus\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"partnerStatus_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"partnerStatus\"\nADD CONSTRAINT \"partnerStatus_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"partnerStatus_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerStatus_tenantId_fkey",
+          "public",
+          "\"public\".\"partnerStatus\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.partnerTier.partnerTier_tenantId_fkey",
+    "label": "Add foreign key \"partnerTier_tenantId_fkey\" on \"partnerTier\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "partnerTier_tenantId_fkey",
+        "table": "partnerTier"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"partnerTier_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerTier_tenantId_fkey",
+          "public",
+          "\"public\".\"partnerTier\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"partnerTier_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"partnerTier\"\nADD CONSTRAINT \"partnerTier_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"partnerTier_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerTier_tenantId_fkey",
+          "public",
+          "\"public\".\"partnerTier\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.partnerType.partnerType_tenantId_fkey",
+    "label": "Add foreign key \"partnerType_tenantId_fkey\" on \"partnerType\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "partnerType_tenantId_fkey",
+        "table": "partnerType"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"partnerType_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerType_tenantId_fkey",
+          "public",
+          "\"public\".\"partnerType\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"partnerType_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"partnerType\"\nADD CONSTRAINT \"partnerType_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"partnerType_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "partnerType_tenantId_fkey",
+          "public",
+          "\"public\".\"partnerType\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.region.region_tenantId_fkey",
+    "label": "Add foreign key \"region_tenantId_fkey\" on \"region\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "region_tenantId_fkey",
+        "table": "region"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"region_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "region_tenantId_fkey",
+          "public",
+          "\"public\".\"region\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"region_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"region\"\nADD CONSTRAINT \"region_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"region_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "region_tenantId_fkey",
+          "public",
+          "\"public\".\"region\""
+        ]
+      }
+    ]
+  }
+]

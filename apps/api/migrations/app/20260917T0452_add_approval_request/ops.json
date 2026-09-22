@@ -1,0 +1,488 @@
+[
+  {
+    "id": "table.approvalRequest",
+    "label": "Create table \"approvalRequest\"",
+    "summary": "Creates table \"approvalRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "approvalRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"approvalRequest\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"approvalRequest\"",
+        "sql": "CREATE TABLE \"public\".\"approvalRequest\" (\n  \"comments\" text,\n  \"entityId\" text NOT NULL,\n  \"entityType\" text NOT NULL,\n  \"id\" text NOT NULL,\n  \"requestedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"requestedBy\" text,\n  \"reviewedAt\" timestamptz,\n  \"reviewedBy\" text,\n  \"status\" text DEFAULT 'PENDING' NOT NULL,\n  \"tenantId\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"approvalRequest\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.deal.currency",
+    "label": "Add column \"currency\" to \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "currency",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"currency\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "currency"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"currency\"",
+        "sql": "ALTER TABLE \"public\".\"deal\" ADD COLUMN \"currency\" text DEFAULT 'USD' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"currency\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "currency"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.deal.expectedCloseDate",
+    "label": "Add column \"expectedCloseDate\" to \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "expectedCloseDate",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"expectedCloseDate\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "expectedCloseDate"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"expectedCloseDate\"",
+        "sql": "ALTER TABLE \"public\".\"deal\" ADD COLUMN \"expectedCloseDate\" timestamptz"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"expectedCloseDate\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "expectedCloseDate"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.deal.partnerRole",
+    "label": "Add column \"partnerRole\" to \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "partnerRole",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"partnerRole\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "partnerRole"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"partnerRole\"",
+        "sql": "ALTER TABLE \"public\".\"deal\" ADD COLUMN \"partnerRole\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"partnerRole\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "partnerRole"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.deal.product",
+    "label": "Add column \"product\" to \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "product",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"product\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "product"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"product\"",
+        "sql": "ALTER TABLE \"public\".\"deal\" ADD COLUMN \"product\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"product\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "product"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.deal.status",
+    "label": "Add column \"status\" to \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "status",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"status\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "status"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"status\"",
+        "sql": "ALTER TABLE \"public\".\"deal\" ADD COLUMN \"status\" text DEFAULT 'DRAFT' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"status\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "deal",
+          "status"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.approvalRequest.approvalRequest_entityType_entityId_idx_ea0fa809",
+    "label": "Create index \"approvalRequest_entityType_entityId_idx_ea0fa809\" on \"approvalRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "approvalRequest_entityType_entityId_idx_ea0fa809",
+        "table": "approvalRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"approvalRequest_entityType_entityId_idx_ea0fa809\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest_entityType_entityId_idx_ea0fa809\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"approvalRequest_entityType_entityId_idx_ea0fa809\"",
+        "sql": "CREATE INDEX \"approvalRequest_entityType_entityId_idx_ea0fa809\" ON \"public\".\"approvalRequest\" (\"entityType\", \"entityId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"approvalRequest_entityType_entityId_idx_ea0fa809\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest_entityType_entityId_idx_ea0fa809\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.approvalRequest.approvalRequest_status_idx_e98638ab",
+    "label": "Create index \"approvalRequest_status_idx_e98638ab\" on \"approvalRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "approvalRequest_status_idx_e98638ab",
+        "table": "approvalRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"approvalRequest_status_idx_e98638ab\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest_status_idx_e98638ab\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"approvalRequest_status_idx_e98638ab\"",
+        "sql": "CREATE INDEX \"approvalRequest_status_idx_e98638ab\" ON \"public\".\"approvalRequest\" (\"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"approvalRequest_status_idx_e98638ab\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest_status_idx_e98638ab\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.approvalRequest.approvalRequest_tenantId_idx_c93ed4f1",
+    "label": "Create index \"approvalRequest_tenantId_idx_c93ed4f1\" on \"approvalRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "approvalRequest_tenantId_idx_c93ed4f1",
+        "table": "approvalRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"approvalRequest_tenantId_idx_c93ed4f1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"approvalRequest_tenantId_idx_c93ed4f1\"",
+        "sql": "CREATE INDEX \"approvalRequest_tenantId_idx_c93ed4f1\" ON \"public\".\"approvalRequest\" (\"tenantId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"approvalRequest_tenantId_idx_c93ed4f1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"approvalRequest_tenantId_idx_c93ed4f1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.deal.deal_stage_idx_51755035",
+    "label": "Create index \"deal_stage_idx_51755035\" on \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "deal_stage_idx_51755035",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"deal_stage_idx_51755035\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"deal_stage_idx_51755035\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"deal_stage_idx_51755035\"",
+        "sql": "CREATE INDEX \"deal_stage_idx_51755035\" ON \"public\".\"deal\" (\"stage\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"deal_stage_idx_51755035\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"deal_stage_idx_51755035\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.deal.deal_status_idx_e98638ab",
+    "label": "Create index \"deal_status_idx_e98638ab\" on \"deal\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "deal_status_idx_e98638ab",
+        "table": "deal"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"deal_status_idx_e98638ab\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"deal_status_idx_e98638ab\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"deal_status_idx_e98638ab\"",
+        "sql": "CREATE INDEX \"deal_status_idx_e98638ab\" ON \"public\".\"deal\" (\"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"deal_status_idx_e98638ab\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"deal_status_idx_e98638ab\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.approvalRequest.approvalRequest_tenantId_fkey",
+    "label": "Add foreign key \"approvalRequest_tenantId_fkey\" on \"approvalRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "approvalRequest_tenantId_fkey",
+        "table": "approvalRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"approvalRequest_tenantId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "approvalRequest_tenantId_fkey",
+          "public",
+          "\"public\".\"approvalRequest\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"approvalRequest_tenantId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"approvalRequest\"\nADD CONSTRAINT \"approvalRequest_tenantId_fkey\"\nFOREIGN KEY (\"tenantId\")\nREFERENCES \"public\".\"tenant\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"approvalRequest_tenantId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "approvalRequest_tenantId_fkey",
+          "public",
+          "\"public\".\"approvalRequest\""
+        ]
+      }
+    ]
+  }
+]
