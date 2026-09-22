@@ -6,6 +6,8 @@ import {
 
 import { Client } from '@modelcontextprotocol/client';
 import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
 @Injectable()
 export class McpClientService
@@ -15,14 +17,17 @@ export class McpClientService
     new Logger(McpClientService.name);
 
   private client: Client | null = null;
+
   private transport:
     | StdioClientTransport
     | null = null;
 
   private connected = false;
 
-  private readonly mcpServerPath =
-    '/Users/rajeshmishra/Documents/allianceos/mcp/deal-mcp/dist/index.js';
+  private readonly mcpServerPath = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../../../mcp/deal-mcp/dist/index.js',
+  );
 
   private async connect(): Promise<void> {
     if (this.connected && this.client) {
@@ -31,6 +36,10 @@ export class McpClientService
 
     this.logger.log(
       'Starting AllianceOS Deal MCP server...',
+    );
+
+    this.logger.log(
+      `MCP server path: ${this.mcpServerPath}`,
     );
 
     this.transport =
